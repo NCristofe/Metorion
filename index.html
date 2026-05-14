@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Metorion - Condições climáticas em tempo real para qualquer cidade do mundo">
+    <title>Metorion</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <script src="scripts.js" defer></script>
+</head>
+
+<body>
+    <header class="logo-metorion">
+        <img src="./img/metorion.png" alt="Metorion logo">
+    </header>
+
+    <div class="larger-box">
+        <div class="search-row">
+            <input
+                class="input-city"
+                id="input-city"
+                placeholder="Digite o nome da cidade"
+                type="text"
+                aria-label="Nome da cidade"
+            >
+            <button class="search-button" id="search-button" aria-label="Buscar clima">
+                <img src="./img/weather.png" alt="">
+            </button>
+        </div>
+
+        <div class="medium-box">
+            <h2 class="city">Clima em São Paulo</h2>
+        </div>
+
+        <p class="temp">21°C</p>
+
+        <div class="smaller-box">
+            <img class="img-climate" src="./img/icon-climate.png" alt="ícone do clima">
+            <p class="text-climate">Nublado</p>
+        </div>
+
+        <p class="wind">Vento: 2.04 km/h</p>
+        <p class="humidity">Umidade: 60%</p>
+        <p class="error-message" aria-live="polite"></p>
+    </div>
+
+    <footer>
+        Desenvolvido por <span>Natanael Cristofe</span>
+        <a class="git-hub" href="https://github.com/natanael731" title="Perfil no GitHub" target="_blank" rel="noopener noreferrer">
+            <img class="git-icon" src="./img/git-hub-icon.png" alt="GitHub">
+        </a>
+    </footer>
+
+</body>
+
+</html>

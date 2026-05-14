@@ -1,0 +1,224 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: "Montserrat", sans-serif;
+}
+
+:root {
+    --color-bg-dark: #1C0F12;
+    --color-surface: #2E1B20;
+    --text-primary: #E0B0B5;
+    --text-placeholder: #A37C7F;
+}
+
+body {
+    min-height: 100vh;
+    width: 100vw;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    background-image: url("https://loremflickr.com/1920/1080/sky,clouds,weather");
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+}
+
+.larger-box {
+    background: rgba(28, 15, 18, 0.92);
+    border-radius: 30px;
+    padding: 24px;
+    max-width: 450px;
+    width: 92%;
+}
+
+.search-row {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.input-city {
+    border: none;
+    padding: 10px 14px;
+    border-radius: 25px;
+    outline: none;
+    font-size: 16px;
+    background-color: var(--color-surface);
+    flex: 1;
+    min-width: 0;
+    color: var(--text-placeholder);
+}
+
+.input-city::placeholder {
+    color: var(--text-placeholder);
+}
+
+.search-button {
+    border: none;
+    padding: 0;
+    outline: none;
+    border-radius: 50%;
+    cursor: pointer;
+    background-color: var(--color-surface);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    transition: opacity 0.2s;
+}
+
+.search-button:hover {
+    opacity: 0.8;
+}
+
+button img {
+    width: 40px;
+    display: block;
+}
+
+.city {
+    color: var(--text-primary);
+    font-size: 28px;
+    font-weight: 300;
+}
+
+.medium-box {
+    margin-top: 28px;
+}
+
+.temp {
+    margin-top: 16px;
+    font-size: 20px;
+    color: var(--text-primary);
+}
+
+.smaller-box {
+    margin-top: 16px;
+    color: var(--text-primary);
+    display: flex;
+    align-items: center;
+}
+
+.text-climate {
+    text-transform: capitalize;
+    margin-left: 16px;
+}
+
+.humidity,
+.wind {
+    color: var(--text-primary);
+    font-size: 12px;
+    margin-top: 16px;
+}
+
+.error-message {
+    color: #e07070;
+    font-size: 12px;
+    margin-top: 12px;
+    min-height: 16px;
+}
+
+.logo-metorion {
+    position: fixed;
+    top: 20px;
+    left: 20px;
+
+    & img {
+        width: 180px;
+    }
+}
+
+footer {
+    position: fixed;
+    bottom: 12px;
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: 12px;
+    color: var(--text-primary);
+    opacity: 0.8;
+    letter-spacing: 0.5px;
+    text-align: center;
+    white-space: nowrap;
+
+    & span {
+        font-weight: bold;
+    }
+}
+
+.git-hub {
+    display: inline-flex;
+    align-items: center;
+    vertical-align: middle;
+}
+
+.git-icon {
+    width: 14px;
+    margin-left: 5px;
+    vertical-align: middle;
+    border-radius: 10px;
+}
+
+/* ── Tablet ─────────────────────────────────────────── */
+@media (max-width: 768px) {
+    .logo-metorion {
+        & img {
+            width: 140px;
+        }
+    }
+}
+
+/* ── Mobile ─────────────────────────────────────────── */
+@media (max-width: 600px) {
+    body {
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        gap: 20px;
+        padding: 24px 0 56px;
+    }
+
+    .logo-metorion {
+        position: relative;
+        top: auto;
+        left: auto;
+
+        & img {
+            width: 130px;
+        }
+    }
+
+    .larger-box {
+        width: 90%;
+        padding: 20px 16px;
+    }
+
+    .city {
+        font-size: 22px;
+    }
+
+    .input-city {
+        font-size: 14px;
+    }
+
+    footer {
+        white-space: normal;
+        width: 85%;
+        bottom: 8px;
+    }
+}
+
+/* ── Small mobile ───────────────────────────────────── */
+@media (max-width: 380px) {
+    .logo-metorion {
+        & img {
+            width: 110px;
+        }
+    }
+
+    .city {
+        font-size: 18px;
+    }
+}
