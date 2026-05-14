@@ -5,6 +5,12 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="Metorion - Condições climáticas em tempo real para qualquer cidade do mundo">
+    <meta name="theme-color" content="#1C0F12">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="apple-mobile-web-app-title" content="Metorion">
+    <link rel="apple-touch-icon" href="./img/metorion.png">
+    <link rel="manifest" href="manifest.json">
     <title>Metorion</title>
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap"
         rel="stylesheet">
@@ -31,19 +37,26 @@
             </button>
         </div>
 
-        <div class="medium-box">
-            <h2 class="city">Clima em São Paulo</h2>
-        </div>
-
-        <p class="temp">21°C</p>
-
-        <div class="smaller-box">
-            <img class="img-climate" src="./img/icon-climate.png" alt="ícone do clima">
+        <div class="weather-info">
+            <h2 class="city">São Paulo</h2>
+            <div class="weather-main">
+                <p class="temp">21°C</p>
+                <img class="img-climate" src="./img/icon-climate.png" alt="ícone do clima">
+            </div>
             <p class="text-climate">Nublado</p>
+
+            <div class="weather-details">
+                <div class="detail-item">
+                    <span class="detail-value humidity">60%</span>
+                    <span class="detail-label">Umidade</span>
+                </div>
+                <div class="detail-item">
+                    <span class="detail-value wind">2.04 km/h</span>
+                    <span class="detail-label">Vento</span>
+                </div>
+            </div>
         </div>
 
-        <p class="wind">Vento: 2.04 km/h</p>
-        <p class="humidity">Umidade: 60%</p>
         <p class="error-message" aria-live="polite"></p>
     </div>
 

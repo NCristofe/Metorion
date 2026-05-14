@@ -2,13 +2,13 @@ const API_KEY = "b6a585a444a05bff90b4a0e303462026";
 const API_BASE = "https://api.openweathermap.org/data/2.5/weather";
 
 function updateWeather(data) {
-    document.querySelector(".city").textContent = "Clima em " + data.name;
+    document.querySelector(".city").textContent = data.name;
     document.querySelector(".temp").textContent = Math.round(data.main.temp) + "°C";
-    document.querySelector(".humidity").textContent = "Umidade: " + data.main.humidity + "%";
-    document.querySelector(".wind").textContent = "Vento: " + data.wind.speed + " km/h";
+    document.querySelector(".humidity").textContent = data.main.humidity + "%";
+    document.querySelector(".wind").textContent = data.wind.speed + " km/h";
     document.querySelector(".text-climate").textContent = data.weather[0].description;
     document.querySelector(".img-climate").src =
-        "https://openweathermap.org/img/wn/" + data.weather[0].icon + ".png";
+        "https://openweathermap.org/img/wn/" + data.weather[0].icon + "@2x.png";
     document.querySelector(".error-message").textContent = "";
 }
 
@@ -28,11 +28,10 @@ async function findCity(city) {
         );
 
         if (!res.ok) {
-            if (res.status === 404) {
-                showError("Cidade não encontrada. Verifique o nome e tente novamente.");
-            } else {
-                showError("Erro ao buscar dados. Tente novamente mais tarde.");
-            }
+            showError(res.status === 404
+                ? "Cidade não encontrada. Verifique o nome e tente novamente."
+                : "Erro ao buscar dados. Tente novamente mais tarde."
+            );
             return;
         }
 
@@ -53,4 +52,8 @@ document.addEventListener("DOMContentLoaded", () => {
     });
 
     findCity("São Paulo");
+
+    if ("serviceWorker" in navigator) {
+        navigator.serviceWorker.register("/service-worker.js");
+    }
 });

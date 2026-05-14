@@ -1,0 +1,18 @@
+{
+    "name": "Metorion",
+    "short_name": "Metorion",
+    "description": "Previsão do tempo em tempo real para qualquer cidade do mundo",
+    "start_url": "/",
+    "display": "standalone",
+    "orientation": "portrait",
+    "background_color": "#1C0F12",
+    "theme_color": "#1C0F12",
+    "icons": [
+        {
+            "src": "./img/metorion.png",
+            "sizes": "any",
+            "type": "image/png",
+            "purpose": "any"
+        }
+    ]
+}

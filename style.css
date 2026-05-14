@@ -7,9 +7,11 @@
 
 :root {
     --color-bg-dark: #1C0F12;
-    --color-surface: #2E1B20;
+    --color-surface: rgba(46, 27, 32, 0.7);
+    --color-surface-solid: #2E1B20;
     --text-primary: #E0B0B5;
     --text-placeholder: #A37C7F;
+    --border: rgba(224, 176, 181, 0.12);
 }
 
 body {
@@ -19,37 +21,52 @@ body {
     justify-content: center;
     align-items: center;
 
-    background-image: url("https://loremflickr.com/1920/1080/sky,clouds,weather");
+    background-image:
+        linear-gradient(160deg, rgba(28, 15, 18, 0.55) 0%, rgba(0, 0, 0, 0.65) 100%),
+        url("https://loremflickr.com/1920/1080/sky,clouds,weather");
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
     background-attachment: fixed;
 }
 
+/* ── Card ───────────────────────────────────────────── */
+
 .larger-box {
-    background: rgba(28, 15, 18, 0.92);
-    border-radius: 30px;
-    padding: 24px;
-    max-width: 450px;
+    background: rgba(28, 15, 18, 0.7);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border: 1px solid var(--border);
+    border-radius: 28px;
+    padding: 28px 24px 24px;
+    max-width: 420px;
     width: 92%;
+    box-shadow: 0 16px 48px rgba(0, 0, 0, 0.45);
 }
+
+/* ── Search ─────────────────────────────────────────── */
 
 .search-row {
     display: flex;
     align-items: center;
-    gap: 8px;
+    gap: 10px;
 }
 
 .input-city {
-    border: none;
-    padding: 10px 14px;
-    border-radius: 25px;
+    border: 1px solid var(--border);
+    padding: 11px 16px;
+    border-radius: 50px;
     outline: none;
-    font-size: 16px;
-    background-color: var(--color-surface);
+    font-size: 14px;
+    background: var(--color-surface);
     flex: 1;
     min-width: 0;
-    color: var(--text-placeholder);
+    color: var(--text-primary);
+    transition: border-color 0.2s;
+}
+
+.input-city:focus {
+    border-color: rgba(224, 176, 181, 0.35);
 }
 
 .input-city::placeholder {
@@ -57,69 +74,119 @@ body {
 }
 
 .search-button {
-    border: none;
+    border: 1px solid var(--border);
     padding: 0;
     outline: none;
     border-radius: 50%;
     cursor: pointer;
-    background-color: var(--color-surface);
+    background: var(--color-surface);
     display: flex;
     align-items: center;
     justify-content: center;
     flex-shrink: 0;
-    transition: opacity 0.2s;
+    transition: background 0.2s, transform 0.15s;
 }
 
 .search-button:hover {
-    opacity: 0.8;
+    background: rgba(46, 27, 32, 0.9);
 }
 
-button img {
+.search-button:active {
+    transform: scale(0.93);
+}
+
+.search-button img {
     width: 40px;
+    height: 40px;
     display: block;
+}
+
+/* ── Weather info ────────────────────────────────────── */
+
+.weather-info {
+    margin-top: 28px;
+    animation: fadeUp 0.35s ease;
 }
 
 .city {
     color: var(--text-primary);
-    font-size: 28px;
+    font-size: 26px;
     font-weight: 300;
+    letter-spacing: 0.5px;
 }
 
-.medium-box {
-    margin-top: 28px;
+.weather-main {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    margin-top: 4px;
 }
 
 .temp {
-    margin-top: 16px;
-    font-size: 20px;
+    font-size: 72px;
+    font-weight: 200;
     color: var(--text-primary);
+    line-height: 1;
+    letter-spacing: -2px;
 }
 
-.smaller-box {
-    margin-top: 16px;
-    color: var(--text-primary);
-    display: flex;
-    align-items: center;
+.img-climate {
+    width: 72px;
+    height: 72px;
 }
 
 .text-climate {
     text-transform: capitalize;
-    margin-left: 16px;
+    color: var(--text-placeholder);
+    font-size: 14px;
+    margin-top: 2px;
+    letter-spacing: 0.3px;
 }
 
-.humidity,
-.wind {
-    color: var(--text-primary);
-    font-size: 12px;
-    margin-top: 16px;
+/* ── Detail pills ───────────────────────────────────── */
+
+.weather-details {
+    display: flex;
+    gap: 12px;
+    margin-top: 24px;
 }
+
+.detail-item {
+    flex: 1;
+    background: var(--color-surface);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    padding: 14px 12px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 4px;
+}
+
+.detail-value {
+    font-size: 18px;
+    font-weight: 600;
+    color: var(--text-primary);
+}
+
+.detail-label {
+    font-size: 10px;
+    color: var(--text-placeholder);
+    text-transform: uppercase;
+    letter-spacing: 0.8px;
+}
+
+/* ── Error ──────────────────────────────────────────── */
 
 .error-message {
     color: #e07070;
     font-size: 12px;
-    margin-top: 12px;
+    margin-top: 14px;
     min-height: 16px;
+    text-align: center;
 }
+
+/* ── Logo ───────────────────────────────────────────── */
 
 .logo-metorion {
     position: fixed;
@@ -127,24 +194,27 @@ button img {
     left: 20px;
 
     & img {
-        width: 180px;
+        width: 160px;
+        filter: drop-shadow(0 2px 8px rgba(0, 0, 0, 0.4));
     }
 }
 
+/* ── Footer ─────────────────────────────────────────── */
+
 footer {
     position: fixed;
-    bottom: 12px;
+    bottom: 14px;
     left: 50%;
     transform: translateX(-50%);
-    font-size: 12px;
-    color: var(--text-primary);
-    opacity: 0.8;
-    letter-spacing: 0.5px;
+    font-size: 11px;
+    color: var(--text-placeholder);
+    letter-spacing: 0.4px;
     text-align: center;
     white-space: nowrap;
 
     & span {
-        font-weight: bold;
+        font-weight: 600;
+        color: var(--text-primary);
     }
 }
 
@@ -155,18 +225,24 @@ footer {
 }
 
 .git-icon {
-    width: 14px;
+    width: 13px;
     margin-left: 5px;
     vertical-align: middle;
-    border-radius: 10px;
+    border-radius: 50%;
+    opacity: 0.8;
+}
+
+/* ── Animation ──────────────────────────────────────── */
+
+@keyframes fadeUp {
+    from { opacity: 0; transform: translateY(10px); }
+    to   { opacity: 1; transform: translateY(0); }
 }
 
 /* ── Tablet ─────────────────────────────────────────── */
 @media (max-width: 768px) {
     .logo-metorion {
-        & img {
-            width: 140px;
-        }
+        & img { width: 130px; }
     }
 }
 
@@ -175,9 +251,8 @@ footer {
     body {
         flex-direction: column;
         justify-content: center;
-        align-items: center;
-        gap: 20px;
-        padding: 24px 0 56px;
+        gap: 18px;
+        padding: 20px 0 52px;
     }
 
     .logo-metorion {
@@ -185,22 +260,25 @@ footer {
         top: auto;
         left: auto;
 
-        & img {
-            width: 130px;
-        }
+        & img { width: 120px; }
     }
 
     .larger-box {
         width: 90%;
-        padding: 20px 16px;
+        padding: 22px 18px 18px;
+    }
+
+    .temp {
+        font-size: 56px;
+    }
+
+    .img-climate {
+        width: 56px;
+        height: 56px;
     }
 
     .city {
-        font-size: 22px;
-    }
-
-    .input-city {
-        font-size: 14px;
+        font-size: 20px;
     }
 
     footer {
@@ -213,9 +291,11 @@ footer {
 /* ── Small mobile ───────────────────────────────────── */
 @media (max-width: 380px) {
     .logo-metorion {
-        & img {
-            width: 110px;
-        }
+        & img { width: 100px; }
+    }
+
+    .temp {
+        font-size: 48px;
     }
 
     .city {
